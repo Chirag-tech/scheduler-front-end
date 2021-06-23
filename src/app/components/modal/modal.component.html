@@ -1,0 +1,41 @@
+<div *ngIf="show" class="modal">
+    <div class="modal-content">
+        <div class="header">
+            <div class="close">
+                <i style="cursor: pointer;" (click)="showModal()" class="fas fa-times"></i>
+            </div>
+            <h2>Classes for {{date}}/07/2021</h2>
+        </div>
+        <div class="content">
+            <h3>Add Class</h3>
+            <form [formGroup]="form">
+                <div class="add-schedule">
+                    <div>
+                        <p>Start Time</p>
+                        <input formControlName="startTime" type="time">
+                    </div>
+                    <div>
+                        <p>End Time</p>
+                        <input formControlName="endTime" type="time">
+                    </div>
+                    <div class="add-btn">
+                        <button (click)="submit()">{{btnText}}</button>
+                    </div>
+                </div>
+                <p *ngIf="overlap" style="color: red;">Schedule is overlapping</p>
+                <p *ngIf="mismatch" style="color: red;">Start Time Cannot be greater than end Time</p>
+            </form>
+            <h3>Existing Classes</h3>
+            <div class="existing-schedule">
+                <div *ngFor="let time of timings;let i=index">
+                    <div class="time" *ngIf="time.date == date">
+                        <p>{{time.startTime}}</p>
+                        <p>{{time.endTime}}</p>
+                        <button class="update" (click)="update(i)">Update</button>
+                        <button class="delete" (click)="delete(i)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<h1 class="title">Schedular</h1>
+<div class="teachers">
+    <div>
+        <p>Select Teacher</p>
+        <select [(ngModel)]="id">
+            <option  *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.NAME}}</option>
+        </select>
+        <button (click)="getTeacherDetails()">Apply</button>
+    </div>
+</div>
+<div class="calendar">
+    <div class="header">
+        <div class="arrow-left">
+            <i style="font-size: 30px;margin-top: 18px;color: rgb(168, 168, 168);" class="fas fa-angle-left"></i>
+        </div>
+        <div class="month">
+            <h2>July</h2>
+        </div>
+        <div class="arrow-right">
+            <i style="font-size: 30px;margin-top: 18px;color: rgb(168, 168, 168);" class="fas fa-angle-right"></i>
+        </div>
+    </div>
+    <div class="days">
+        <div class="day">
+            <h3>SUN</h3>
+        </div>
+        <div class="day2">
+            <h3>MON</h3>
+        </div>
+        <div class="day2">
+            <h3>TUE</h3>
+        </div>
+        <div class="day2">
+            <h3>WED</h3>
+        </div>
+        <div class="day2">
+            <h3>THU</h3>
+        </div>
+        <div class="day2">
+            <h3>FRI</h3>
+        </div>
+        <div class="day2">
+            <h3>SAT</h3>
+        </div>
+    </div>
+    <div class="dates">
+        <div (click)="showModal(date)" *ngFor="let date of dates" class="date">
+            <h2>{{date}}</h2>
+        </div>
+    </div>
+</div>
