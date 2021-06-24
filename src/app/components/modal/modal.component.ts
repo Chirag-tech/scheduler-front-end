@@ -11,17 +11,18 @@ import { EventBusService } from 'src/app/services/eventBusService';
 export class ModalComponent implements OnInit {
 
   public id: any;
-  public form!: FormGroup;
+  public form: FormGroup;
   public show = false;
   public btnText = "Add";
   public updateMode = false;
-  public date!: any;
+  public date: any;
   public timings: any = [];
   public index: any;
   public timingInputFormat: any = [];
   public overlap = false;
   public mismatch = false;
   public teacherDetails: any;
+
   constructor(
     private eventBus: EventBusService,
     private fb: FormBuilder,
@@ -73,6 +74,7 @@ export class ModalComponent implements OnInit {
       if (this.updateMode) {
         this.timings[this.index] = params;
         this.timingInputFormat[this.index] = this.form.value;
+        this.updateTeacher();
         this.updateMode = false;
         this.index = undefined;
         this.btnText = "Add";
@@ -81,6 +83,7 @@ export class ModalComponent implements OnInit {
       else {
         this.timings.push(params);
         this.timingInputFormat.push(this.form.value);
+        this.updateTeacher();
         this.addTime();
       }
       this.form.reset();
@@ -89,6 +92,14 @@ export class ModalComponent implements OnInit {
         this.overlap = true;
       }
     }
+  }
+
+  updateTeacher() {
+    const data:any = this.apiService.teacherDetails.getValue();
+    this.apiService.teacherDetails.next({
+      ...data,
+      Classes:this.timingInputFormat
+    });
   }
   update(index: any)
   {
@@ -171,6 +182,7 @@ export class ModalComponent implements OnInit {
   {
     this.timings.splice(index, 1);
     this.timingInputFormat.splice(index, 1);
+    this.updateTeacher();
     this.addTime();
   }
   showModal()

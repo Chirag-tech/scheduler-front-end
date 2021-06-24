@@ -18,15 +18,17 @@ export class ApiService {
     constructor(private http:HttpClient) {}
 
     getTeachers() {
-        return this.http.get("http://localhost:8080/get");
+        return this.http.get("https://pacific-depths-47458.herokuapp.com/get");
     }
 
     getTeacher(id: any) {
-        return this.http.get(`http://localhost:8080/get/${id}`);
+        this.http.get(`https://pacific-depths-47458.herokuapp.com/get/${id}`).subscribe((res: any) => {
+            this.teacherDetails.next(res.data);
+        })
     }
 
     addClass(id: any, data: any) {
-        return this.http.put(`http://localhost:8080/update/${id}`, data, httpOptions);
+        return this.http.put(`https://pacific-depths-47458.herokuapp.com/update/${id}`, data, httpOptions);
     }
 
     getTeacherDetails() {

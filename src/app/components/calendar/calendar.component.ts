@@ -19,34 +19,47 @@ export class CalendarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+    this.setDates();
     this.getTeachers();
   }
 
   getTeachers() {
 
     this.apiService.getTeachers().subscribe((res: any) => {
-      let len = res.length;
-      let s = 0;
-      for (let i = 1;i <= 31; i++)
-      {
-        this.dates.push(i);
-      }
-      this.teachers = res;
+      console.log(res);
+      this.teachers = res.data;
     })
   }
 
+  setDates()
+  {
+    this.dates = [];
+    for (let i = 1;i <= 31; i++)
+    {
+      this.dates.push({
+        classes: false,
+        date:i
+      });
+    }
+  }
   getTeacherDetails() {
     this.apiService.teacherId.next(this.id);
-    this.apiService.getTeacher(this.id).subscribe((res: any) => {
-      
-      this.apiService.teacherDetails.next(res);
+    this.apiService.getTeacher(this.id);
+    this.apiService.getTeacherDetails().subscribe((res: any) => {
+      this.setDates();
+      if (res?.Classes) {
+        res.Classes.forEach((data: any) => {
+          this.dates[data.date - 1].classes = true;
+        })
+      }
     })
   }
 
 
 
   showModal(date:any) {
-    this.eventBus.emit(new EmitEvent('showModal',date));
+    this.eventBus.emit(new EmitEvent('showModal',date.date));
   }
 
 }

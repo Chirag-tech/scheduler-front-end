@@ -1,9 +1,9 @@
-<h1 class="title">Schedular</h1>
+<h1 class="title">Scheduler</h1>
 <div class="teachers">
     <div>
         <p>Select Teacher</p>
         <select [(ngModel)]="id">
-            <option  *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.NAME}}</option>
+            <option  *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.Name}}</option>
         </select>
         <button (click)="getTeacherDetails()">Apply</button>
     </div>
@@ -44,8 +44,8 @@
         </div>
     </div>
     <div class="dates">
-        <div (click)="showModal(date)" *ngFor="let date of dates" class="date">
-            <h2>{{date}}</h2>
+        <div (click)="showModal(date)" [ngClass]="date.classes ? 'green':'red'" *ngFor="let date of dates" class="date">
+            <h2>{{date.date}}</h2>
         </div>
     </div>
 </div>

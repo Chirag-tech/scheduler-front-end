@@ -62,7 +62,6 @@
     margin-bottom: 10px;
     cursor: pointer;
     border-radius: 5px;
-    border: 2px solid red;
 }
 
 .date:hover {
@@ -96,4 +95,12 @@ p {
 select {
     width: 200px;
     padding: 5px;
+}
+
+.green {
+    border: 2px solid #63db34;
+}
+
+.red {
+    border: 2px solid red;
 }
