@@ -4,9 +4,9 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "**",
+    redirectTo:"app",
     pathMatch:"full",
-    redirectTo:"app"
   },
   {
     path: "app",
