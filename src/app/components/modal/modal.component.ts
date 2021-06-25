@@ -56,7 +56,7 @@ export class ModalComponent implements OnInit {
   buildForm()
   {
     this.form = this.fb.group({
-      startTime: [''.replace,Validators.required],
+      startTime: ['',Validators.required],
       endTime: ['',Validators.required],
       date: [''],
     })
