@@ -19,7 +19,7 @@
                         <input formControlName="endTime" type="time">
                     </div>
                     <div class="add-btn">
-                        <button (click)="submit()">{{btnText}}</button>
+                        <button [disabled]="form.invalid" (click)="submit()">{{btnText}}</button>
                     </div>
                 </div>
                 <p *ngIf="overlap" style="color: red;">Schedule is overlapping</p>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/apiService';
 import { EventBusService } from 'src/app/services/eventBusService';
 
@@ -56,8 +56,8 @@ export class ModalComponent implements OnInit {
   buildForm()
   {
     this.form = this.fb.group({
-      startTime: [''],
-      endTime: [''],
+      startTime: [''.replace,Validators.required],
+      endTime: ['',Validators.required],
       date: [''],
     })
   }

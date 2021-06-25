@@ -14,21 +14,22 @@ export class ApiService {
    
     public teacherId = new BehaviorSubject('');
     public teacherDetails = new BehaviorSubject('');
+    public url = "https://scheduler-backend-chirag-tech.vercel.app"
 
     constructor(private http:HttpClient) {}
 
     getTeachers() {
-        return this.http.get("https://pacific-depths-47458.herokuapp.com/get");
+        return this.http.get(`${this.url}/get`);
     }
 
     getTeacher(id: any) {
-        this.http.get(`https://pacific-depths-47458.herokuapp.com/get/${id}`).subscribe((res: any) => {
+        this.http.get(`${this.url}/get/${id}`).subscribe((res: any) => {
             this.teacherDetails.next(res.data);
         })
     }
 
     addClass(id: any, data: any) {
-        return this.http.put(`https://pacific-depths-47458.herokuapp.com/update/${id}`, data, httpOptions);
+        return this.http.put(`${this.url}/update/${id}`, data, httpOptions);
     }
 
     getTeacherDetails() {
